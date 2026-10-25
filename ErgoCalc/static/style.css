@@ -1556,18 +1556,104 @@ p {
     }
 }
 
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
 
-/* ========================================
-   19. ACESSIBILIDADE
-======================================== */
+/* Telas de toque: sem efeitos "hover" que ficam presos após o toque */
+@media (hover: none) {
+    .botao:hover {
+        transform: none;
+        box-shadow: none;
+    }
 
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
+    .passo-card:hover {
+        transform: none;
+        box-shadow: 0 5px 20px rgba(26, 70, 47, 0.03);
+    }
+}
+
+@media (max-width: 680px) {
+    html {
+        scroll-padding-top: 16px;
+    }
+
+    body {
+        min-height: 100dvh;
+        overflow-x: clip;
+    }
+
+    /* ---- Cabeçalho: logo + botão na 1ª linha, links na 2ª ---- */
+    .cabecalho {
+        position: static;
+    }
+
+    .navegacao {
+        flex-wrap: wrap;
+        gap: 0 20px;
+        min-height: 0;
+        padding-top: 12px;
+    }
+
+    .navegacao::after {          /* quebra de linha */
+        content: "";
+        order: 3;
+        flex-basis: 100%;
+        height: 0;
+    }
+
+    .logo {
+        order: 1;
+        margin-right: auto;
+    }
+
+    .menu {
+        display: contents;       /* links e botão viram itens do .navegacao */
+    }
+
+    .menu > .botao {
+        order: 2;
+    }
+
+    .menu > a:not(.botao) {
+        display: inline-flex;
+        align-items: center;
+        order: 4;
+        min-height: 44px;
+        font-size: 13px;
+    }
+
+    /* ---- Áreas de toque ---- */
+    .botao-pequeno {
+        min-height: 40px;
+    }
+
+    .voltar {
+        min-height: 44px;
+    }
+
+    /* ---- Calculadora: resultado logo abaixo do título ---- */
+    .calc-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .calc-container > * {
+        min-width: 0;
+    }
+
+    .calc-introducao {
+        order: 1;
+    }
+
+    .resultado {
+        order: 2;
+        margin-top: 0;
+        margin-bottom: 18px;
+    }
+
+    .calc-layout {
+        order: 3;
     }
 }
