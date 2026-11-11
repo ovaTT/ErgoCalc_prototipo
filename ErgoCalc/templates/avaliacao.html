@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block titulo %}Avaliação postural{% endblock %}
+{% set perguntas = [
+  ("pes", "Meus pés ficam apoiados no chão (ou em um apoio) enquanto estudo?", ["Sim, quase sempre", "Às vezes", "Raramente"]),
+  ("costas", "Minhas costas ficam apoiadas no encosto da cadeira?", ["Sim, quase sempre", "Às vezes", "Raramente"]),
+  ("cabeca", "Minha cabeça fica inclinada para baixo ou projetada para a frente ao olhar a tela ou o material?", ["Raramente", "Às vezes", "Com frequência"]),
+  ("tempo", "Quanto tempo costumo ficar na mesma posição sem me mexer?", ["Menos de 30 minutos", "De 30 a 60 minutos", "Mais de 1 hora"]),
+  ("pausas", "Com que frequência faço pausas para levantar ou me movimentar?", ["A cada 30 a 60 minutos", "Poucas vezes por período", "Quase nunca"])
+] %}
+{% block conteudo %}
+<div class="calc-introducao">
+    <a class="voltar" href="{{ url_for('inicio') }}"><span aria-hidden="true">←</span> Voltar para o início</a>
+    <span class="etiqueta">CHECKLIST DE HÁBITOS</span>
+    <h1>Avaliação <span>postural</span></h1>
+    <p>Responda sobre seus hábitos e receba orientações educativas. Não é um diagnóstico médico: ela se baseia apenas no que você informar.</p>
+</div>
+
+<div class="ferr-grid">
+    <section class="card">
+        <form id="form-avaliacao" novalidate>
+            {% for chave, texto, opcoes in perguntas %}
+            <fieldset class="pergunta" data-chave="{{ chave }}">
+                <legend>{{ loop.index }}. {{ texto }}</legend>
+                {% for o in opcoes %}
+                <label class="opcao-linha"><input type="radio" name="{{ chave }}" value="{{ loop.index0 }}"><span>{{ o }}</span></label>
+                {% endfor %}
+            </fieldset>
+            {% endfor %}
+            <p class="erro-form" id="avaliacao-erro" role="alert" hidden>Responda todas as perguntas para ver as orientações.</p>
+            <button type="submit" class="botao botao-submit">Ver orientações</button>
+        </form>
+    </section>
+
+    <section class="card" id="avaliacao-resultado" aria-live="polite">
+        <span class="card-etapa">RESULTADO</span>
+        <h2>Suas orientações</h2>
+        <p>Depois de responder o checklist, as orientações aparecem aqui.</p>
+        <p class="integra-nota" data-integra="cadeira"></p>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block titulo %}Pausas ativas{% endblock %}
+{% set atividades = [
+  ("Movimentação leve dos ombros", ["Sentado ou em pé, deixe os braços soltos.", "Eleve os ombros devagar em direção às orelhas e solte.", "Faça círculos lentos para trás, cerca de 5 vezes.", "Pare se sentir dor."]),
+  ("Alongamento leve de braços e peito", ["Entrelace as mãos à frente e estenda os braços sem forçar.", "Depois, abra os braços para os lados, levando os ombros levemente para trás.", "Respire normalmente por 15 a 20 segundos."]),
+  ("Movimento suave do pescoço", ["Incline a cabeça devagar para um lado, sem forçar, por 10 a 15 segundos.", "Volte ao centro e repita do outro lado.", "Evite giros rápidos ou círculos completos com o pescoço."]),
+  ("Levantar e caminhar", ["Levante-se e caminhe por um ou dois minutos.", "Movimente suavemente tornozelos e pernas.", "Se quiser, aproveite para beber água."]),
+  ("Descanso visual", ["Afaste o olhar da tela ou do caderno.", "Olhe para um ponto distante por cerca de 20 segundos.", "Pisque devagar algumas vezes."])
+] %}
+{% block conteudo %}
+<div class="calc-introducao">
+    <a class="voltar" href="{{ url_for('inicio') }}"><span aria-hidden="true">←</span> Voltar para o início</a>
+    <span class="etiqueta">PAUSAS ATIVAS</span>
+    <h1>Pausas <span>ativas</span></h1>
+    <p>Pausas curtas para se movimentar e descansar a vista. A configuração é independente dos alertas posturais.</p>
+</div>
+
+<div class="aviso-info">
+    Os avisos de pausa funcionam enquanto o ErgoCalc estiver aberto no navegador. Faça os movimentos devagar e sem dor.
+    Pare se sentir desconforto, tontura ou dor; se você tem alguma condição de saúde, siga a orientação do seu profissional.
+</div>
+
+<div class="ferr-grid">
+    <section class="card">
+        <span class="card-etapa">AVISO DE PAUSA</span>
+        <h2>Configuração das pausas</h2>
+
+        <label class="interruptor">
+            <input type="checkbox" data-cfg-ativo="pausas">
+            <span class="trilho"></span>
+            <span>Avisar quando for hora de uma pausa</span>
+        </label>
+
+        <fieldset class="opcoes">
+            <legend>Intervalo entre pausas</legend>
+            {% for m in [30, 45, 60, 90] %}
+            <label class="opcao"><input type="radio" name="pausas-intervalo" value="{{ m }}" data-cfg-intervalo="pausas"><span>{{ m }} min</span></label>
+            {% endfor %}
+        </fieldset>
+
+        <fieldset class="opcoes">
+            <legend>Duração de cada pausa</legend>
+            {% for m in [3, 5, 10] %}
+            <label class="opcao"><input type="radio" name="pausas-duracao" value="{{ m }}" data-cfg-duracao="pausas"><span>{{ m }} min</span></label>
+            {% endfor %}
+        </fieldset>
+
+        <p class="contagem" id="pausas-contagem" aria-live="off">Avisos de pausa desativados</p>
+        <button type="button" class="botao botao-secundario" data-adiar="pausa">Adiar próximo aviso em 5 min</button>
+    </section>
+
+    <section class="card" id="pausa-card">
+        <span class="card-etapa">AGORA</span>
+        <h2>Fazer uma pausa</h2>
+        <div id="pausa-inicio">
+            <p>Inicie um temporizador e escolha uma ou mais atividades abaixo. Os alertas ficam em silêncio durante a pausa.</p>
+            <button type="button" class="botao" id="pausa-iniciar">Iniciar pausa</button>
+        </div>
+        <div id="pausa-andamento" hidden>
+            <p class="temporizador" id="pausa-tempo" aria-live="off">00:00</p>
+            <p>Pausa em andamento. Escolha uma atividade abaixo e respire com calma.</p>
+            <button type="button" class="botao botao-secundario" id="pausa-finalizar">Finalizar pausa</button>
+        </div>
+    </section>
+</div>
+
+<h2 class="titulo-bloco">Atividades leves</h2>
+<div class="ferr-grid tres">
+    {% for titulo, passos in atividades %}
+    <article class="card atividade">
+        <h3>{{ titulo }}</h3>
+        <ol>{% for p in passos %}<li>{{ p }}</li>{% endfor %}</ol>
+    </article>
+    {% endfor %}
+</div>
+{% endblock %}

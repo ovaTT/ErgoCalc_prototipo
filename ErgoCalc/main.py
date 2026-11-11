@@ -64,5 +64,25 @@ def resultado():
         )
 
 
+@app.route("/alertas")
+def alertas():
+    return render_template("alertas.html")
+
+
+@app.route("/pausas")
+def pausas():
+    return render_template("pausas.html")
+
+
+@app.route("/avaliacao")
+def avaliacao():
+    return render_template("avaliacao.html")
+
+
+@app.route("/guia")
+def guia():
+    return render_template("guia.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)

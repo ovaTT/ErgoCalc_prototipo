@@ -29,6 +29,7 @@
                 <a href="{{ url_for('inicio') }}">Início</a>
                 <a href="#sobre">Sobre</a>
                 <a href="#como-funciona">Como funciona</a>
+                {% include '_links_extra.html' %}
 
                 <a
                     class="botao botao-pequeno"
@@ -163,6 +164,22 @@
             </div>
         </section>
 
+        <section class="secao-ferramentas">
+            <div class="container">
+                <div class="secao-titulo">
+                    <span class="etiqueta">CUIDE DA SUA POSTURA</span>
+                    <h2>Mais ferramentas para estudar com conforto</h2>
+                    <p>Além da calculadora, use lembretes, pausas, um checklist e um guia educativo.</p>
+                </div>
+                <div class="ferr-grid quatro">
+                    <a class="card atalho" href="{{ url_for('alertas') }}"><h3>Alertas posturais</h3><p>Lembretes automáticos ou manuais para conferir a postura.</p></a>
+                    <a class="card atalho" href="{{ url_for('pausas') }}"><h3>Pausas ativas</h3><p>Temporizador e atividades leves para se movimentar.</p></a>
+                    <a class="card atalho" href="{{ url_for('avaliacao') }}"><h3>Avaliação postural</h3><p>Checklist de hábitos com orientações educativas.</p></a>
+                    <a class="card atalho" href="{{ url_for('guia') }}"><h3>Guia educativo</h3><p>Postura ao sentar, tela, pausas e alterações posturais.</p></a>
+                </div>
+            </div>
+        </section>
+
         <section class="secao-sobre" id="sobre">
             <div class="container sobre-conteudo">
                 <div>
@@ -260,5 +277,6 @@
             <span>© 2026 ErgoCalc</span>
         </div>
     </footer>
+    <script src="{{ url_for('static', filename='ergocalc.js') }}" defer></script>
 </body>
 </html>

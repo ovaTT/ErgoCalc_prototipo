@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block titulo %}Guia educativo{% endblock %}
+{% set basicos = [
+  ("Postura ao sentar", "Sente-se com o quadril bem encostado no fundo do assento e varie de posição ao longo do tempo. Não existe uma única postura perfeita: a melhor postura é a próxima, ou seja, mudar com frequência."),
+  ("Pés", "Mantenha os pés apoiados no chão ou em um apoio firme, com os joelhos em um ângulo confortável. Se a cadeira estiver alta, um apoio para os pés ajuda. A calculadora do ErgoCalc estima uma faixa de altura da cadeira."),
+  ("Costas", "Procure apoiar as costas no encosto, inclusive a região lombar, sem ficar na ponta da cadeira. Se o encosto não acompanha a lombar, uma almofada fina pode ajudar."),
+  ("Braços", "Deixe os ombros relaxados e os cotovelos próximos ao corpo, em um ângulo confortável (perto de 90°). Antebraços e punhos devem ficar apoiados e sem tensão."),
+  ("Tela", "Deixe a tela a cerca de um braço de distância, com o topo na altura dos olhos ou um pouco abaixo. Em notebooks, um apoio ou teclado externo evita inclinar a cabeça para baixo."),
+  ("Pausas", "Levante-se e se movimente com frequência, em pausas curtas, e descanse a vista. Use os alertas e as pausas ativas do ErgoCalc como lembrete.")
+] %}
+{% set alteracoes = [
+  ("Escoliose", "É uma curvatura lateral da coluna, geralmente com rotação das vértebras. Na maior parte dos casos a causa não é identificada, e costuma ser percebida na infância ou na adolescência. Segundo a literatura, não é causada por sentar errado nem por carregar mochila."),
+  ("Hipercifose", "É o aumento da curvatura da parte superior das costas (região torácica), por vezes chamada de “corcunda”. Pode ter causas diferentes, como hábitos posturais, alterações do crescimento dos ossos ou outras condições. Só uma avaliação profissional diferencia uma postura flexível de uma alteração estrutural."),
+  ("Hiperlordose", "É o aumento da curvatura da região lombar. Pode estar ligada a fatores como fraqueza muscular, peso corporal, gravidez ou outras condições, e nem sempre vem de má postura."),
+  ("Alterações posturais cervicais", "São mudanças na curvatura natural do pescoço, como a retificação. Podem se associar a diferentes fatores. Ficar muito tempo olhando para baixo pode gerar desconforto, mas a relação entre postura e essas alterações é complexa e não é uma causa simples e direta.")
+] %}
+{% block conteudo %}
+<div class="calc-introducao">
+    <a class="voltar" href="{{ url_for('inicio') }}"><span aria-hidden="true">←</span> Voltar para o início</a>
+    <span class="etiqueta">GUIA EDUCATIVO</span>
+    <h1>Guia de <span>postura</span></h1>
+    <p>Orientações simples para estudar com mais conforto. O conteúdo é educativo e não substitui avaliação profissional.</p>
+</div>
+
+<div class="ferr-grid tres">
+    {% for titulo, texto in basicos %}
+    <article class="card atividade"><h3>{{ titulo }}</h3><p>{{ texto }}</p></article>
+    {% endfor %}
+</div>
+
+<h2 class="titulo-bloco">Alterações posturais: o que é bom saber</h2>
+<div class="aviso-info">
+    Estes são termos usados por profissionais de saúde. Eles <strong>não são necessariamente causados por má postura</strong>
+    e só podem ser identificados em uma avaliação profissional. Este guia não faz diagnóstico.
+</div>
+<div class="ferr-grid">
+    {% for titulo, texto in alteracoes %}
+    <article class="card atividade"><h3>{{ titulo }}</h3><p>{{ texto }}</p></article>
+    {% endfor %}
+</div>
+
+<section class="card integra">
+    <h2>Quando procurar um profissional</h2>
+    <p>Procure um médico ou fisioterapeuta se houver dor que persiste, formigamento, fraqueza, dor que atrapalha o sono ou assimetrias visíveis nos ombros, quadris ou costas.
+    Em caso de dúvida, converse com um responsável ou com o serviço de saúde da sua escola.</p>
+    <p><a href="{{ url_for('avaliacao') }}">Responder ao checklist</a> · <a href="{{ url_for('pausas') }}">Fazer uma pausa ativa</a> · <a href="{{ url_for('alertas') }}">Configurar alertas</a></p>
+</section>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block titulo %}Alertas posturais{% endblock %}
+{% block conteudo %}
+<div class="calc-introducao">
+    <a class="voltar" href="{{ url_for('inicio') }}"><span aria-hidden="true">←</span> Voltar para o início</a>
+    <span class="etiqueta">LEMBRETES POSTURAIS</span>
+    <h1>Alertas <span>posturais</span></h1>
+    <p>Receba lembretes discretos para conferir como você está sentado: costas, pés, ombros, cabeça e mudança de posição.</p>
+</div>
+
+<div class="aviso-info">
+    <strong>Como funciona:</strong> os lembretes aparecem enquanto o ErgoCalc estiver aberto em uma aba do navegador.
+    Com o site fechado, nenhum lembrete é enviado. O ErgoCalc <strong>não detecta a sua postura</strong>: ele apenas lembra você de verificá-la.
+</div>
+
+<div class="ferr-grid">
+    <section class="card">
+        <span class="card-etapa">MODO AUTOMÁTICO</span>
+        <h2>Lembretes em intervalos</h2>
+
+        <label class="interruptor">
+            <input type="checkbox" data-cfg-ativo="alertas">
+            <span class="trilho"></span>
+            <span>Ativar alertas automáticos</span>
+        </label>
+
+        <fieldset class="opcoes">
+            <legend>Intervalo entre lembretes</legend>
+            {% for m in [15, 30, 45, 60] %}
+            <label class="opcao"><input type="radio" name="alertas-intervalo" value="{{ m }}" data-cfg-intervalo="alertas"><span>{{ m }} min</span></label>
+            {% endfor %}
+        </fieldset>
+
+        <p class="contagem" id="alertas-contagem" aria-live="off">Alertas desativados</p>
+        <button type="button" class="botao botao-secundario" data-adiar="alerta">Adiar próximo lembrete em 5 min</button>
+    </section>
+
+    <section class="card">
+        <span class="card-etapa">MODO MANUAL</span>
+        <h2>Lembrar agora</h2>
+        <p>Quer conferir a postura neste instante? O lembrete manual aparece na hora e não altera o ritmo dos alertas automáticos.</p>
+        <button type="button" class="botao" id="alertas-agora">Lembrar agora</button>
+    </section>
+</div>
+
+<section class="card integra">
+    <span class="card-etapa">SEU PERCURSO NO ERGOCALC</span>
+    <h2>Resumo das suas ferramentas</h2>
+    <ul class="lista-integra">
+        <li><strong>Cadeira:</strong> <span data-integra="cadeira">você ainda não fez o cálculo.</span> <a href="{{ url_for('abrir_calculadora') }}">Calculadora</a></li>
+        <li><strong>Avaliação postural:</strong> <span data-integra="avaliacao">você ainda não respondeu o checklist.</span> <a href="{{ url_for('avaliacao') }}">Avaliação</a></li>
+        <li><strong>Pausas ativas:</strong> <span data-integra="pausas">desativadas.</span> <a href="{{ url_for('pausas') }}">Pausas</a></li>
+    </ul>
+</section>
+{% endblock %}

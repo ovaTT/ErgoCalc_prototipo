@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}{% endblock %} | ErgoCalc</title>
+    <meta name="description" content="{% block descricao %}Ferramentas de conscientização postural do ErgoCalc.{% endblock %}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="container navegacao">
+            <a class="logo" href="{{ url_for('inicio') }}">
+                <span class="logo-icone">E</span>
+                <span>ErgoCalc</span>
+            </a>
+
+            <nav class="menu" aria-label="Menu principal">
+                <a href="{{ url_for('inicio') }}">Início</a>
+                <a href="{{ url_for('inicio') }}#sobre">Sobre</a>
+                {% include '_links_extra.html' %}
+
+                <a class="botao botao-pequeno" href="{{ url_for('abrir_calculadora') }}">Calculadora</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pagina-calculadora">
+        <div class="container calc-container">
+            {% block conteudo %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <div class="container rodape-conteudo">
+            <a class="logo logo-rodape" href="{{ url_for('inicio') }}">
+                <span class="logo-icone">E</span>
+                <span>ErgoCalc</span>
+            </a>
+            <p>Projeto informativo sobre ergonomia.</p>
+            <span>© 2026 ErgoCalc</span>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='ergocalc.js') }}" defer></script>
+</body>
+</html>
