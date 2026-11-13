@@ -1,4 +1,4 @@
-<a href="{{ url_for('alertas') }}"{% if request.endpoint == 'alertas' %} aria-current="page"{% endif %}>Alertas</a>
-<a href="{{ url_for('pausas') }}"{% if request.endpoint == 'pausas' %} aria-current="page"{% endif %}>Pausas</a>
-<a href="{{ url_for('avaliacao') }}"{% if request.endpoint == 'avaliacao' %} aria-current="page"{% endif %}>Avaliação</a>
 <a href="{{ url_for('guia') }}"{% if request.endpoint == 'guia' %} aria-current="page"{% endif %}>Guia</a>
+<a href="{{ url_for('avaliacao') }}"{% if request.endpoint == 'avaliacao' %} aria-current="page"{% endif %}>Avaliação</a>
+<a href="{{ url_for('pausas') }}"{% if request.endpoint == 'pausas' %} aria-current="page"{% endif %}>Pausas</a>
+<a href="{{ url_for('alertas') }}"{% if request.endpoint == 'alertas' %} aria-current="page"{% endif %}>Alertas</a>
