@@ -57,7 +57,7 @@
             <button type="button" class="botao" id="pausa-iniciar">Iniciar pausa</button>
         </div>
         <div id="pausa-andamento" hidden>
-            <p class="temporizador" id="pausa-tempo" aria-live="off">00:00</p>
+            <div class="anel"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="anel-fundo" cx="60" cy="60" r="52"/><circle class="anel-prog" id="pausa-anel" cx="60" cy="60" r="52"/></svg><p class="temporizador" id="pausa-tempo" role="timer" aria-live="off">00:00</p></div>
             <p>Pausa em andamento. Escolha uma atividade abaixo e respire com calma.</p>
             <button type="button" class="botao botao-secundario" id="pausa-finalizar">Finalizar pausa</button>
         </div>

@@ -18,6 +18,8 @@
 <div class="ferr-grid">
     <section class="card">
         <form id="form-avaliacao" novalidate>
+            <div class="progresso" role="progressbar" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" id="aval-progresso"><span id="aval-barra"></span></div>
+            <p class="progresso-texto" id="aval-contador">0 de 5 respondidas</p>
             {% for chave, texto, opcoes in perguntas %}
             <fieldset class="pergunta" data-chave="{{ chave }}">
                 <legend>{{ loop.index }}. {{ texto }}</legend>

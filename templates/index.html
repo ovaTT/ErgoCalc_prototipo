@@ -15,9 +15,17 @@
         rel="stylesheet"
         href="{{ url_for('static', filename='style.css') }}"
     >
+    <meta name="theme-color" content="#081629">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2319b37d'/%3E%3Cpath d='M22 18h22v6H29v8h13v6H29v8h15v6H22z' fill='white'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='tema.css') }}">
+    <script src="{{ url_for('static', filename='efeitos.js') }}"></script>
 </head>
 
 <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <header class="cabecalho">
         <div class="container navegacao">
             <a class="logo" href="{{ url_for('inicio') }}">
@@ -41,91 +49,73 @@
         </div>
     </header>
 
-    <main>
-        <section class="hero">
+    <main id="conteudo">
+        <section class="hero hero-pro">
+            <div class="hero-grade" aria-hidden="true"></div>
             <div class="container hero-conteudo">
                 <div class="hero-texto">
-                    <span class="etiqueta">
-                        ERGONOMIA SIMPLIFICADA
-                    </span>
-
-                    <h1>
-                        Mais conforto começa com
-                        <span>as medidas certas.</span>
-                    </h1>
-
+                    <span class="etiqueta etiqueta-escura">ERGONOMIA PARA ESTUDANTES</span>
+                    <h1>Sente-se melhor.<span>Estude por mais tempo.</span></h1>
                     <p>
-                        Utilize o ErgoCalc para inserir medidas corporais
-                        e da cadeira e consultar uma avaliação baseada
-                        nos cálculos configurados no sistema.
+                        O ErgoCalc ajuda você a ajustar a altura da cadeira, lembra de conferir a postura,
+                        propõe pausas ativas e explica, de forma educativa, como cuidar do corpo nos estudos.
                     </p>
-
                     <div class="hero-acoes">
-                        <a
-                            class="botao"
-                            href="{{ url_for('abrir_calculadora') }}"
-                        >
-                            Começar avaliação
-                            <span aria-hidden="true">→</span>
-                        </a>
-
-                        <a class="botao botao-secundario" href="#sobre">
-                            Conhecer o projeto
-                        </a>
+                        <a class="botao" href="{{ url_for('abrir_calculadora') }}">Calcular altura da cadeira <span aria-hidden="true">→</span></a>
+                        <a class="botao botao-secundario" href="{{ url_for('guia') }}">Ler o guia</a>
                     </div>
-
-                    <div class="hero-nota">
-                        <span class="status-ponto"></span>
-                        Ferramenta de apoio à avaliação ergonômica
-                    </div>
+                    <ul class="hero-fatos">
+                        <li>Calculadora ergonômica</li>
+                        <li>Alertas e pausas</li>
+                        <li>Checklist de hábitos</li>
+                    </ul>
                 </div>
 
-                <div class="hero-visual" aria-hidden="true">
-                    <div class="visual-cartao">
-                        <div class="visual-topo">
-                            <span class="visual-circulo"></span>
-                            <span class="visual-circulo"></span>
-                            <span class="visual-circulo"></span>
-                            <span class="visual-titulo">ErgoCalc</span>
-                        </div>
-
-                        <div class="visual-corpo">
-                            <div class="visual-simbolo">✓</div>
-
-                            <h2>Avalie suas medidas</h2>
-
-                            <p>
-                                Um processo simples para organizar
-                                informações sobre postura e mobiliário.
-                            </p>
-
-                            <div class="visual-linha">
-                                <span>Medidas corporais</span>
-                                <span class="visual-check">✓</span>
-                            </div>
-
-                            <div class="visual-linha">
-                                <span>Altura da cadeira</span>
-                                <span class="visual-check">✓</span>
-                            </div>
-
-                            <div class="visual-linha">
-                                <span>Resultado do cálculo</span>
-                                <span class="visual-check">✓</span>
-                            </div>
-
-                            <div class="visual-barra">
-                                <span></span>
-                            </div>
-
-                            <span class="visual-legenda">
-                                Simples. Prático. Organizado.
-                            </span>
-                        </div>
+                <figure class="palco" data-postura="boa">
+                    <svg id="boneco" viewBox="0 0 420 380" role="img" aria-label="Ilustração de uma pessoa sentada de lado em uma cadeira, em uma mesa. Arraste para movimentá-la.">
+                        <line class="chao" x1="16" y1="352" x2="404" y2="352"/>
+                        <rect class="movel-cheio" x="292" y="232" width="124" height="8" rx="3"/>
+                        <rect class="movel-cheio" x="404" y="240" width="6" height="112"/>
+                        <rect class="movel-cheio" x="316" y="224" width="64" height="8" rx="3"/>
+                        <path class="movel-cheio" d="M352 224 L370 152 L378 154 L364 224Z"/>
+                        <rect class="movel-cheio" x="106" y="168" width="16" height="104" rx="8"/>
+                        <rect class="movel-cheio" x="106" y="264" width="122" height="14" rx="7"/>
+                        <rect class="movel-cheio" x="160" y="278" width="8" height="58"/>
+                        <path class="movel" d="M110 350 L164 336 L222 350"/>
+                        <circle class="movel-cheio" cx="110" cy="350" r="6"/><circle class="movel-cheio" cx="222" cy="350" r="6"/>
+                        <line class="prumo" x1="150" y1="50" x2="150" y2="258"/>
+                        <text class="rotulo" x="160" y="42">ALINHAMENTO DA COLUNA</text>
+                        <polyline class="osso" id="thigh" points="150,258 268,258 272,344 296,344"/>
+                        <path class="osso" id="spine" d="M150 258 Q150 200 154 152"/>
+                        <polyline class="osso" id="arm" points="154,152 176,214 292,230" style="stroke-width:7"/>
+                        <line class="osso" id="neck" x1="154" y1="152" x2="158" y2="106" style="stroke-width:7"/>
+                        <circle class="cabeca" id="head" cx="158" cy="106" r="21"/>
+                        <circle class="pulso" id="pl-costas" r="7"/><circle class="marca" id="mk-costas" r="6"/>
+                        <circle class="pulso" id="pl-cabeca" r="7"/><circle class="marca" id="mk-cabeca" r="6"/>
+                        <circle class="pulso" id="pl-pes" r="7"/><circle class="marca" id="mk-pes" r="6"/>
+                    </svg>
+                    <div class="palco-controles" role="group" aria-label="Exemplo de postura">
+                        <button type="button" data-postura="boa" aria-pressed="true">Postura adequada</button>
+                        <button type="button" data-postura="ruim" aria-pressed="false">Postura inadequada</button>
                     </div>
+                    <p class="palco-estado" id="palco-estado" aria-live="polite">Postura adequada: costas apoiadas, pés no chão e cabeça alinhada.</p>
+                    <figcaption>Arraste o boneco para movimentá-lo. Ilustração educativa: não analisa nem mede a sua postura.</figcaption>
+                </figure>
+            </div>
+        </section>
 
-                    <div class="decoracao decoracao-um"></div>
-                    <div class="decoracao decoracao-dois"></div>
+        <section class="secao-problemas">
+            <div class="container">
+                <div class="secao-titulo">
+                    <span class="etiqueta">O PROBLEMA</span>
+                    <h2>Estudar muitas horas sentado cobra seu preço</h2>
+                    <p>Hábitos comuns que podem causar desconforto quando se repetem por muito tempo.</p>
+                </div>
+                <div class="ferr-grid quatro">
+                    <article class="card problema"><span class="num">01</span><h3>Pés sem apoio</h3><p>Pernas penduradas ou cruzadas sobrecarregam a região do quadril e das costas.</p></article>
+                    <article class="card problema"><span class="num">02</span><h3>Costas sem encosto</h3><p>Sentar na ponta da cadeira deixa a coluna sem sustentação por longos períodos.</p></article>
+                    <article class="card problema"><span class="num">03</span><h3>Cabeça à frente</h3><p>Olhar para baixo ou para a frente por horas aumenta a tensão no pescoço e nos ombros.</p></article>
+                    <article class="card problema"><span class="num">04</span><h3>Horas sem se mover</h3><p>Ficar muito tempo na mesma posição, sem pausas, favorece rigidez e cansaço.</p></article>
                 </div>
             </div>
         </section>
@@ -278,5 +268,6 @@
         </div>
     </footer>
     <script src="{{ url_for('static', filename='ergocalc.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='figura.js') }}" defer></script>
 </body>
 </html>

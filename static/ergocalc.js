@@ -151,7 +151,7 @@
         if (b) b.textContent = fim ? 'Pausa em andamento' :
             (c.pausas.ativo && p.pausa ? 'Próximo aviso de pausa em ' + fmt(p.pausa - agora) : 'Avisos de pausa desativados');
         var ini = $('#pausa-inicio'), and = $('#pausa-andamento');
-        if (ini && and) { ini.hidden = !!fim; and.hidden = !fim; if (fim) $('#pausa-tempo').textContent = fmt(fim - agora); }
+        if (ini && and) { ini.hidden = !!fim; and.hidden = !fim; if (fim) { $('#pausa-tempo').textContent = fmt(fim - agora); var an = $('#pausa-anel'); if (an) an.style.strokeDashoffset = String(327 * (1 - Math.max(0, Math.min(1, (fim - agora) / (c.pausas.duracao * MIN))))); } }
         resumo(c);
     }
 
@@ -264,7 +264,14 @@
         guardarCadeira();
         ligarControles();
         var f = $('#form-avaliacao');
-        if (f) f.addEventListener('submit', function (e) { e.preventDefault(); avaliar(f); });
+        if (f) {
+            f.addEventListener('submit', function (e) { e.preventDefault(); avaliar(f); });
+            f.addEventListener('change', function () {
+                var n = f.querySelectorAll('.pergunta input:checked').length;
+                $('#aval-barra').style.width = (n * 20) + '%'; $('#aval-contador').textContent = n + ' de 5 respondidas';
+                $('#aval-progresso').setAttribute('aria-valuenow', n);
+            });
+        }
         window.addEventListener('storage', atualizar);
         tick();
         setInterval(tick, 1000);
